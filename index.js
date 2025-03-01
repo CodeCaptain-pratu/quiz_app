@@ -50,3 +50,10 @@ let quizInfo=[
         answer:"object",
     },
 ]
+
+let entryText=document.querySelector(".entryText");
+let startBtn=document.querySelector(".start");
+startBtn.addEventListener("click",function(){
+    entryText.style.display="none";
+    startBtn.style.display="none";
+})
