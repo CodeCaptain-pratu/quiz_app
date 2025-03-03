@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-       <h1 class="entryText">🤔Check your General Knowledge</h1>  
-       <button class="start">Start</button>
+    <div class="mainContainer">
+       <div class="startQuiz">
+          <h1 class="entryText">🤔Check your General Knowledge</h1>  
+          <button class="start btn startQuizBtn">Start</button>
+       </div>ad
+      <div class="playQuiz hide">
+        <div class="timer">Time Left : <span class="time">30</span>s</div>
+        <div class="questionContainer">
+
+        </div>
+        <button class="btn nextQBtn">Next</button>
+      </div>
+      <div class="endQuiz hide">
+        <div class="score">Your score : </div>
+        <button class="btn endQuizBtn">Restart</button>
+        <button class="btn exitBtn">Exit</button>
+      </div>
     </div>
     <script src="index.js"></script>
 </body>

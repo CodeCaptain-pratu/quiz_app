@@ -50,10 +50,31 @@ let quizInfo=[
         answer:"object",
     },
 ]
+let startQuizBox=document.querySelector(".startQuiz");
+let startQuizBtn=document.querySelector(".startQuizBtn");
 
-let entryText=document.querySelector(".entryText");
-let startBtn=document.querySelector(".start");
-startBtn.addEventListener("click",function(){
-    entryText.style.display="none";
-    startBtn.style.display="none";
+let playQuizBox=document.querySelector(".playQuiz");
+let nextQBtn=document.querySelector(".nextQBtn");
+
+let endQuizBox=document.querySelector(".endQuiz");
+let endQuizBtn=document.querySelector(".endQuizBtn");
+let exitBtn=document.querySelector(".exitBtn");
+
+startQuizBtn.addEventListener("click",function(){
+    playQuizBox.style.display="block";
+    startQuizBox.style.display="none";
+});
+
+nextQBtn.addEventListener("click",function(){
+    endQuizBox.style.display="block";
+    playQuizBox.style.display="none";
+});
+
+endQuizBtn.addEventListener("click",function(){
+    playQuizBox.style.display="block";
+    endQuizBox.style.display="none";
+});
+exitBtn.addEventListener("click",function(){
+    startQuizBox.style.display="block";
+    endQuizBox.style.display="none";
 })
