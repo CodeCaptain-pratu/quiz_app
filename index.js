@@ -61,20 +61,30 @@ let endQuizBtn=document.querySelector(".endQuizBtn");
 let exitBtn=document.querySelector(".exitBtn");
 
 startQuizBtn.addEventListener("click",function(){
-    playQuizBox.style.display="block";
-    startQuizBox.style.display="none";
+    playQuizBox.classList.remove("hide");
+    playQuizBox.style.display="flex";
+    startQuizBox.classList.add("hide");
 });
 
 nextQBtn.addEventListener("click",function(){
-    endQuizBox.style.display="block";
-    playQuizBox.style.display="none";
+    endQuizBox.classList.remove("hide");
+    endQuizBox.style.display="flex";
+   playQuizBox.classList.add("hide");
 });
 
 endQuizBtn.addEventListener("click",function(){
-    playQuizBox.style.display="block";
-    endQuizBox.style.display="none";
+    playQuizBox.classList.remove("hide");
+    playQuizBox.style.display="flex";
+    endQuizBox.classList.add("hide");
 });
+
 exitBtn.addEventListener("click",function(){
-    startQuizBox.style.display="block";
-    endQuizBox.style.display="none";
+    startQuizBox.classList.remove("hide");
+    startQuizBox.style.display="flex";
+    playQuizBox.classList.add("hide");
+    endQuizBox.classList.add("hide");
+    
 })
+
+let questionE1=document.querySelector(".question");
+let options=document.querySelector(".options");

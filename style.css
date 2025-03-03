@@ -43,6 +43,13 @@ html,body{
     height:90%;
     text-align: center;
 }
+.startQuiz,.playQuiz,.endQuiz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:1rem;
+}
 /* utility class */
 .btn{
     background-color: #007bff;
@@ -55,5 +62,5 @@ html,body{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .hide{
-    display: none;
+    display: none!important;
 }
