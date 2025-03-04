@@ -22,7 +22,7 @@ let quizInfo=[
     {
         question:"Which gas do plants absorb from the atmosphere?",
         options:["Oxygen","Nitrogen","CarbonDioxide","Hydrogen"],
-        answer:"Carbon Dioxide",
+        answer:"CarbonDioxide",
     },
     {
         question:"What is the largest ocean on Earth?",
@@ -86,5 +86,9 @@ exitBtn.addEventListener("click",function(){
     
 })
 
-let questionE1=document.querySelector(".question");
-let options=document.querySelector(".options");
+let questionBox=document.querySelector(".questionContainer");
+let optionBox=document.querySelector(".optionsContainer");
+let quizData=document.querySelector(".quizData")
+let currentQuestion=0;
+console.log(quizData);
+

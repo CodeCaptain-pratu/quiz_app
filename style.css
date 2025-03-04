@@ -50,6 +50,13 @@ html,body{
     flex-direction: column;
     gap:1rem;
 }
+.optionsContainer{
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 /* utility class */
 .btn{
     background-color: #007bff;
