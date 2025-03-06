@@ -50,45 +50,76 @@ let quizInfo=[
         answer:"object",
     },
 ]
-let startQuizBox=document.querySelector(".startQuiz");
-let startQuizBtn=document.querySelector(".startQuizBtn");
 
-let playQuizBox=document.querySelector(".playQuiz");
-let nextQBtn=document.querySelector(".nextQBtn");
+let startQuizBox = document.querySelector(".startQuiz");
+let startQuizBtn = document.querySelector(".startQuizBtn");
 
-let endQuizBox=document.querySelector(".endQuiz");
-let endQuizBtn=document.querySelector(".endQuizBtn");
-let exitBtn=document.querySelector(".exitBtn");
+let playQuizBox = document.querySelector(".playQuiz");
+let nextQBtn = document.querySelector(".nextQBtn");
 
-startQuizBtn.addEventListener("click",function(){
+let endQuizBox = document.querySelector(".endQuiz");
+let endQuizBtn = document.querySelector(".endQuizBtn");
+let exitBtn = document.querySelector(".exitBtn");
+
+let currentQuestionIndex = 0; // सुरुवातीला पहिला प्रश्न दाखवायचा
+
+startQuizBtn.addEventListener("click", function () {
     playQuizBox.classList.remove("hide");
-    playQuizBox.style.display="flex";
+    playQuizBox.style.display = "flex";
     startQuizBox.classList.add("hide");
+    currentQuestionIndex = 0; // Reset the quiz index
+    showQuestion(); // पहिला प्रश्न दाखवा
 });
 
-nextQBtn.addEventListener("click",function(){
-    endQuizBox.classList.remove("hide");
-    endQuizBox.style.display="flex";
-   playQuizBox.classList.add("hide");
+nextQBtn.addEventListener("click", function () {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizInfo.length) {
+        showQuestion(); // पुढील प्रश्न दाखवा
+    } else {
+        playQuizBox.classList.add("hide"); // Quiz संपले, खेळ बंद करा
+        endQuizBox.classList.remove("hide");
+        endQuizBox.style.display = "flex";
+    }
 });
 
-endQuizBtn.addEventListener("click",function(){
-    playQuizBox.classList.remove("hide");
-    playQuizBox.style.display="flex";
+endQuizBtn.addEventListener("click", function () {
+    startQuizBox.classList.remove("hide");
+    startQuizBox.style.display = "flex";
     endQuizBox.classList.add("hide");
 });
 
-exitBtn.addEventListener("click",function(){
+exitBtn.addEventListener("click", function () {
     startQuizBox.classList.remove("hide");
-    startQuizBox.style.display="flex";
+    startQuizBox.style.display = "flex";
     playQuizBox.classList.add("hide");
     endQuizBox.classList.add("hide");
-    
-})
+});
 
-let questionBox=document.querySelector(".questionContainer");
-let optionBox=document.querySelector(".optionsContainer");
-let quizData=document.querySelector(".quizData")
-let currentQuestion=0;
-console.log(quizData);
+function showQuestion() {
+    let data = quizInfo[currentQuestionIndex];
+    let questionBox = document.querySelector(".questionContainer");
+    let optionBox = document.querySelector(".optionsContainer");
 
+    questionBox.innerHTML = `<p class="q">${data.question}</p>`;
+
+    optionBox.innerHTML = ""; // जुन्या पर्यायांना clear करणे
+    data.options.forEach((option) => {
+        let button = document.createElement("button");
+        button.innerText = option;
+        button.classList.add("btn2");
+        button.addEventListener("click", () => checkAnswer(option));
+        optionBox.appendChild(button);
+    });
+}
+
+function checkAnswer(selectedOption) {
+    let correctAnswer = quizInfo[currentQuestionIndex].answer;
+    if (selectedOption === correctAnswer) {
+        alert("✅ बरोबर उत्तर!");
+    } else {
+        alert("❌ चुकले! योग्य उत्तर: " + correctAnswer);
+    }
+}
+
+// सुरुवातीला पहिला प्रश्न दाखवा
+showQuestion();
