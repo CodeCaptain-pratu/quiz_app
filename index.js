@@ -27,12 +27,12 @@ let quizInfo=[
     {
         question:"What is the largest ocean on Earth?",
         options:["AtlanticOcean","IndianOcean","ArcticOcean","PacificOcean"],
-        answer:"Pacific Ocean",
+        answer:"PacificOcean",
     },
     {
         question:"Who invented the telephone?",
         options:["ThomasEdison", "AlexanderGrahamBell", "NikolaTesla", "IsaacNewton"],
-        answer:"Alexander Graham Bell",
+        answer:"AlexanderGrahamBell",
     },
     {
         question:"Which keyword is used to declare a variable in JavaScript?",
@@ -61,7 +61,10 @@ let endQuizBox = document.querySelector(".endQuiz");
 let endQuizBtn = document.querySelector(".endQuizBtn");
 let exitBtn = document.querySelector(".exitBtn");
 
+let showScore=document.querySelector(".showScore");
+
 let currentQuestionIndex = 0; // सुरुवातीला पहिला प्रश्न दाखवायचा
+let score=0;
 
 startQuizBtn.addEventListener("click", function () {
     playQuizBox.classList.remove("hide");
@@ -79,12 +82,13 @@ nextQBtn.addEventListener("click", function () {
         playQuizBox.classList.add("hide"); // Quiz संपले, खेळ बंद करा
         endQuizBox.classList.remove("hide");
         endQuizBox.style.display = "flex";
+        showScore.innerHTML=score;
     }
 });
 
 endQuizBtn.addEventListener("click", function () {
-    startQuizBox.classList.remove("hide");
-    startQuizBox.style.display = "flex";
+    playQuizBox.classList.remove("hide");
+    playQuizBox.style.display = "flex";
     endQuizBox.classList.add("hide");
 });
 
@@ -107,19 +111,33 @@ function showQuestion() {
         let button = document.createElement("button");
         button.innerText = option;
         button.classList.add("btn2");
-        button.addEventListener("click", () => checkAnswer(option));
+        button.addEventListener("click", function(){
+            let correctAnswer = quizInfo[currentQuestionIndex].answer;
+            if (option === correctAnswer) {
+                score++;
+                button.style.backgroundColor="green";
+            }else{
+                button.style.backgroundColor="red";
+            }
+
+        });
         optionBox.appendChild(button);
     });
 }
 
-function checkAnswer(selectedOption) {
-    let correctAnswer = quizInfo[currentQuestionIndex].answer;
-    if (selectedOption === correctAnswer) {
-        alert("✅ बरोबर उत्तर!");
-    } else {
-        alert("❌ चुकले! योग्य उत्तर: " + correctAnswer);
-    }
-}
+// function checkAnswer(selectedOption) {
+//     let correctAnswer = quizInfo[currentQuestionIndex].answer;
+//     console.log("answer: ",correctAnswer);
+//     if (selectedOption === correctAnswer) {
+//         console.log(selectedOption);
+//         bool=true;
+//         console.log("your answer: ",selectedOption);
+//         score++;
+//     } else {
+//         console.log("your answer: ",selectedOption);
+//         console.log(selectedOption);
+//     }
+// }
 
 // सुरुवातीला पहिला प्रश्न दाखवा
 showQuestion();

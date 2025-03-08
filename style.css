@@ -2,6 +2,7 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    color:#EAEAEA;
 }
 html,body{
     width: 100%;
@@ -10,12 +11,14 @@ html,body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f9f9;
+    /* background-color: #f4f9f936; */
+    background-color: #1E1E2E;
+    
 }
 .mainContainer{
     width:80%;
     height:80%;
-    background-color: #fff;
+    background-color:#2E2E3A ;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     display: flex;
@@ -25,20 +28,20 @@ html,body{
     gap: 20px;
 }
 .startQuiz{
-    border:2px solid green;
+    /* border:2px solid green; */
     width:50%;
     height:90%;
     text-align: center;
    
 }
 .playQuiz{
-    border:2px solid black;
+    /* border:2px solid black; */
     width:50%;
     height:90%;
     text-align: center;
 }
 .endQuiz{
-    border:2px solid red;
+    /* border:2px solid red; */
     width:50%;
     height:90%;
     text-align: center;
@@ -51,7 +54,7 @@ html,body{
     gap:1rem;
 }
 .optionsContainer{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +79,7 @@ html,body{
     border:none;
     color:#fff;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 50px;
     border-radius: 5px;
     font-size: 1.2rem;
     cursor: pointer;
@@ -85,4 +88,16 @@ html,body{
 
 .hide{
     display: none!important;
+}
+.primaryBtn{
+    background-color: #007bff;
+}
+.secondaryBtn{
+    background-color:#3B82F6 ;
+} 
+.correctAnswer{
+    background-color:  #22C55E;
+}
+.wrongAnswer{
+    background-color:#EF4444; 
 }
