@@ -28,20 +28,20 @@ html,body{
     gap: 20px;
 }
 .startQuiz{
-    /* border:2px solid green; */
     width:50%;
     height:90%;
     text-align: center;
    
 }
 .playQuiz{
-    /* border:2px solid black; */
     width:50%;
     height:90%;
     text-align: center;
 }
+.playQuiz p{
+    font-size: 20px;
+}
 .endQuiz{
-    /* border:2px solid red; */
     width:50%;
     height:90%;
     text-align: center;
@@ -54,12 +54,10 @@ html,body{
     gap:1rem;
 }
 .optionsContainer{
-    /* border: 2px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     gap:10px;
     padding: 5%;
 }

@@ -58,20 +58,23 @@ let playQuizBox = document.querySelector(".playQuiz");
 let nextQBtn = document.querySelector(".nextQBtn");
 
 let endQuizBox = document.querySelector(".endQuiz");
-let endQuizBtn = document.querySelector(".endQuizBtn");
+let restartQuizBtn = document.querySelector(".restartQuizBtn");
 let exitBtn = document.querySelector(".exitBtn");
 
+let timerElement=document.querySelector(".timer");
+console.log(timerElement);
 let showScore=document.querySelector(".showScore");
 
 let currentQuestionIndex = 0; // सुरुवातीला पहिला प्रश्न दाखवायचा
 let score=0;
+let time=4;
 
 startQuizBtn.addEventListener("click", function () {
     playQuizBox.classList.remove("hide");
     playQuizBox.style.display = "flex";
     startQuizBox.classList.add("hide");
     currentQuestionIndex = 0; // Reset the quiz index
-    showQuestion(); // पहिला प्रश्न दाखवा
+    startQuiz();
 });
 
 nextQBtn.addEventListener("click", function () {
@@ -86,10 +89,13 @@ nextQBtn.addEventListener("click", function () {
     }
 });
 
-endQuizBtn.addEventListener("click", function () {
+restartQuizBtn.addEventListener("click", function () {
     playQuizBox.classList.remove("hide");
     playQuizBox.style.display = "flex";
     endQuizBox.classList.add("hide");
+    time=4;
+    timerElement.innerText=`Time Left : ${time}s`
+    startQuizTimer();
 });
 
 exitBtn.addEventListener("click", function () {
@@ -99,6 +105,20 @@ exitBtn.addEventListener("click", function () {
     endQuizBox.classList.add("hide");
 });
 
+function startQuizTimer(){
+  
+    let timeInterval=setInterval(function(){
+        timerElement.innerText=`Time Left : ${time}s`;
+        time--;
+        if(time<0){
+            clearInterval(timeInterval);
+            playQuizBox.classList.add("hide"); // Quiz संपले, खेळ बंद करा
+            endQuizBox.classList.remove("hide");
+            endQuizBox.style.display = "flex";
+            showScore.innerHTML=score;
+        }
+    },1000);
+}
 function showQuestion() {
     let data = quizInfo[currentQuestionIndex];
     let questionBox = document.querySelector(".questionContainer");
@@ -112,32 +132,25 @@ function showQuestion() {
         button.innerText = option;
         button.classList.add("btn2");
         button.addEventListener("click", function(){
-            let correctAnswer = quizInfo[currentQuestionIndex].answer;
+            let correctAnswer =data.answer;
+            let allOptions=document.querySelectorAll(".btn2");
+            
+            allOptions.forEach(function(btn){//make other button disabled
+                btn.disabled=true;
+            })            
             if (option === correctAnswer) {
                 score++;
                 button.style.backgroundColor="green";
             }else{
                 button.style.backgroundColor="red";
             }
-
         });
         optionBox.appendChild(button);
     });
 }
 
-// function checkAnswer(selectedOption) {
-//     let correctAnswer = quizInfo[currentQuestionIndex].answer;
-//     console.log("answer: ",correctAnswer);
-//     if (selectedOption === correctAnswer) {
-//         console.log(selectedOption);
-//         bool=true;
-//         console.log("your answer: ",selectedOption);
-//         score++;
-//     } else {
-//         console.log("your answer: ",selectedOption);
-//         console.log(selectedOption);
-//     }
-// }
-
-// सुरुवातीला पहिला प्रश्न दाखवा
-showQuestion();
+function startQuiz(){
+    startQuizTimer();
+    showQuestion();
+}
+//show first question 
