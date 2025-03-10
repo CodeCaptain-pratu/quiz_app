@@ -20,19 +20,19 @@ let quizInfo=[
         answer:"7",
     },
     {
-        question:"Which gas do plants absorb from the atmosphere?",
-        options:["Oxygen","Nitrogen","CarbonDioxide","Hydrogen"],
-        answer:"CarbonDioxide",
+        question:"What is constructor in Js?",
+        options:["Method","class","Data","array"],
+        answer:"Method",
     },
     {
-        question:"What is the largest ocean on Earth?",
-        options:["AtlanticOcean","IndianOcean","ArcticOcean","PacificOcean"],
-        answer:"PacificOcean",
+        question:"What is the type of class in Js?",
+        options:["string","null","function","object"],
+        answer:"function",
     },
     {
-        question:"Who invented the telephone?",
-        options:["ThomasEdison", "AlexanderGrahamBell", "NikolaTesla", "IsaacNewton"],
-        answer:"AlexanderGrahamBell",
+        question:"Who was the mother of Chtrapati Shivaji Maharaj?",
+        options:["Savitri", "Yashoda", "Shivai", "Jijamata"],
+        answer:"Jijamata",
     },
     {
         question:"Which keyword is used to declare a variable in JavaScript?",
@@ -61,13 +61,13 @@ let endQuizBox = document.querySelector(".endQuiz");
 let restartQuizBtn = document.querySelector(".restartQuizBtn");
 let exitBtn = document.querySelector(".exitBtn");
 
-let timerElement=document.querySelector(".timer");
+let timerElement=document.querySelector(".time");
 console.log(timerElement);
 let showScore=document.querySelector(".showScore");
 
 let currentQuestionIndex = 0; // सुरुवातीला पहिला प्रश्न दाखवायचा
 let score=0;
-let time=4;
+let time=30;
 
 startQuizBtn.addEventListener("click", function () {
     playQuizBox.classList.remove("hide");
@@ -90,12 +90,14 @@ nextQBtn.addEventListener("click", function () {
 });
 
 restartQuizBtn.addEventListener("click", function () {
+    currentQuestionIndex=0;
+    time=30;
+    score=0;
     playQuizBox.classList.remove("hide");
     playQuizBox.style.display = "flex";
     endQuizBox.classList.add("hide");
-    time=4;
-    timerElement.innerText=`Time Left : ${time}s`
-    startQuizTimer();
+    timerElement.innerText=`${time}`
+    startQuiz();
 });
 
 exitBtn.addEventListener("click", function () {
@@ -108,7 +110,7 @@ exitBtn.addEventListener("click", function () {
 function startQuizTimer(){
   
     let timeInterval=setInterval(function(){
-        timerElement.innerText=`Time Left : ${time}s`;
+        timerElement.innerText=` ${time}`;
         time--;
         if(time<0){
             clearInterval(timeInterval);
@@ -116,9 +118,16 @@ function startQuizTimer(){
             endQuizBox.classList.remove("hide");
             endQuizBox.style.display = "flex";
             showScore.innerHTML=score;
+            showResult(score);
         }
     },1000);
 }
+
+function showResult(score){
+    let result=endQuizBox.createElement="p";
+    result.innerText=`Your score is ${result}`;
+}
+
 function showQuestion() {
     let data = quizInfo[currentQuestionIndex];
     let questionBox = document.querySelector(".questionContainer");
@@ -132,7 +141,7 @@ function showQuestion() {
         button.innerText = option;
         button.classList.add("btn2");
         button.addEventListener("click", function(){
-            let correctAnswer =data.answer;
+            let correctAnswer = data.answer;
             let allOptions=document.querySelectorAll(".btn2");
             
             allOptions.forEach(function(btn){//make other button disabled
@@ -140,7 +149,7 @@ function showQuestion() {
             })            
             if (option === correctAnswer) {
                 score++;
-                button.style.backgroundColor="green";
+                button.style.backgroundColor="#11f405f1";
             }else{
                 button.style.backgroundColor="red";
             }
@@ -153,4 +162,6 @@ function startQuiz(){
     startQuizTimer();
     showQuestion();
 }
+
+
 //show first question 
